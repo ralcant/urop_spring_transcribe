@@ -40,7 +40,7 @@ Make sure to always return something that can be iterable. Be careful about retu
 def extract_from_phrase(text):
     # return [text] # uncomment if you want to return the same text
     return text.split(" ") # if you want to return all the words found in a phrase
-    # TODO: find a way to return a list
+    # TODO: find a way to return a list of the "phrases" in text
 '''
 Returns the complete path given a folder, prefix, name and type
 Folder must end in "/"
