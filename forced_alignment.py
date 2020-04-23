@@ -108,7 +108,7 @@ def get_path(folder, prefix, name, file_type):
 if __name__ == "__main__":
     project = Transcribe_project()
     ###### FIRST: IF YOU JUST GOT THIS FILE, please uncomment below (and run) ###########
-    #project.make_folders()
+    #project.make_folders()   ### HELLO, UNCOMMENT ME :)
 
     ###### SECOND: comment line above^ and uncomment this below (and run) #################
     #filename = "p01_s2_vid_parent_annotation_2019-03-13-11-16-16"

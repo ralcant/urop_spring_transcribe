@@ -8,11 +8,11 @@ Computes forced-alignment for processing videos given .csv files with their resp
 ## Setup
 1. Clone the repo by running `git clone https://github.com/ralcant/urop_spring_transcribe.git`
 2. `cd urop_spring_transcribe`
-3. Go to `forced_alignment.py` and see the bottom part, uncomment the line that says `HELLO, UNCOMMENT ME :)`, uncomment it and run `python forced_alignment.py`. This will create the directories you need to run this script.
-Now, go to the ![Folder of the videos of 5s](https://drive.google.com/drive/u/1/folders/1EiYlxLbYYj5Ms9Vw6bgfZ_B9YLhS9tfD) 
+3. Go to `forced_alignment.py` and see the bottom part, uncomment the line that says `HELLO, UNCOMMENT ME :)`, and run `python forced_alignment.py`. This will create the directories you need to run this script.
+Now, go to the [folder of the videos of 5s](https://drive.google.com/drive/u/1/folders/1EiYlxLbYYj5Ms9Vw6bgfZ_B9YLhS9tfD) 
 and download one of the folders (with all videos in it). For starters, you can try the first one, as that one worked well for me (Spoiler alert: not all of them did :( ). 
 4. Once it downloads, unzip the folder and place it into the `videos` folder of the repo
-5. Now go to the ![drive of all the transcripts](https://drive.google.com/drive/u/1/folders/1dYyPtDaEaxvLU7e5XkH9LHHlzmYpEO_m) and download the csv file of THE SAME session you downloaded before.
+5. Now go to the [drive of all the transcripts](https://drive.google.com/drive/u/1/folders/1dYyPtDaEaxvLU7e5XkH9LHHlzmYpEO_m) and download the csv file of THE SAME session you downloaded before.
 6. They HAVE to have the same name (the only difference is that one of them is a folder and the other is a .csv file). Are you sure they are t-h-e s-a-m-e? 
 7. Totally sure? Okay, fine. Continue.
 8. Now we are all setup! (yayyyy)
