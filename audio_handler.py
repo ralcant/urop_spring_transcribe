@@ -24,28 +24,53 @@ expressed like audio_prefixed followed by the name. For example, if audio_prefix
 and the name = "cool_videos" then this will write to an mp3 file called 'audio_cool_videos.mp3'
 in the audio_folder folder.
 """
-def write_audio_of_all_videos(name, video_folder="./videos/", 
+def write_audio_of_videos_in_parts(name, num_parts, video_folder="./videos/", 
                              audio_folder = "./audios/", audio_prefix = "audio_", lazy_update= True):
-    list_all_clips = []
-    root_folder = ''.join([video_folder, name])
-    all_elements = os.listdir(root_folder)
-    only_mp4 = list(filter(lambda name: name.endswith(".mp4"), all_elements)) #only keeping the videos
-    sorted_videos = sorted(only_mp4, key = extract_number_from_video) # ordering with the number, not with the str rep
-                                                                      # 'video_2' goes before 'video_10'
-    
-    print("Trying to combine all audios!")
-    output_audio = get_path(audio_folder, audio_prefix, name, "mp3")
-    if os.path.exists(output_audio) and lazy_update:
-        print(f"The audio {output_audio} already exists and lazy_update = True, so we are skipping this.")
+    all_parts_folder = f"{audio_folder}{name}/"
+    get_subpart_path = lambda num_part: get_path(all_parts_folder, f"{audio_prefix}{num_parts}_part_", num_part, "mp3")
+    os.makedirs(all_parts_folder, exist_ok=True) #creating necessary folder if necessary
+    total_audio_path = get_path(all_parts_folder, audio_prefix, name, "mp3")
+    if os.path.exists(total_audio_path) and lazy_update:
+        print(f"The audio: {total_audio_path} already exists and lazy_update is set to {lazy_update}, so we are skipping this.")
+    if all(os.path.exists(get_subpart_path(i)) for i in range(1, num_parts+1)) and lazy_update:
+        print(f"The processed inputs already exist at {all_parts_folder} and lazy_update is {lazy_update}, so we are skippping it")
         return
-    for sub_video in sorted_videos:
-        print(".", end="") #just to keep track of where we are 
-        clip_i = AudioFileClip(os.path.join(root_folder, sub_video))
-        list_all_clips.append(clip_i)
-    clips_combined = concatenate_audioclips(list_all_clips)
-    print()
-    print("Clips combined, now writing to {}".format(output_audio))
-    clips_combined.write_audiofile(output_audio)
+    else:
+        print(get_subpart_path(1))
+        list_all_clips = []
+        all_elements = os.listdir(f"{video_folder}{name}/")
+        only_mp4 = list(filter(lambda name: name.endswith(".mp4"), all_elements)) #only keeping the videos
+        sorted_videos = sorted(only_mp4, key = extract_number_from_video) # ordering with the number, not with the str rep
+                                                                        # 'video_2' goes before 'video_10'        
+        print("Trying to combine all audios!")
+        for sub_video in sorted_videos:
+            print(".", end="") #just to keep track of where we are 
+            subclip = AudioFileClip(f"{video_folder}{name}/{sub_video}")
+            list_all_clips.append(subclip)
+        clips_combined = concatenate_audioclips(list_all_clips)
+        print()
+        print("Clips combined, now writing to {}".format(total_audio_path))
+        clips_combined.write_audiofile(total_audio_path)       
+    print(f"\nNow trying to divide the audio in {num_parts} parts \n") #TODO: check if the parts already exist
+    divide_audio(total_audio_path, num_parts, all_parts_folder, audio_prefix)
+
+def divide_audio(audio_folder, num_parts, parts_folder, audio_part_prefix):
+    audio = AudioFileClip(audio_folder)
+    total_duration = audio.duration
+    part_duration = total_duration/num_parts
+    get_subpart_path = lambda num_part: get_path(parts_folder, f"{audio_part_prefix}{num_parts}_part_", num_part, "mp3")
+    for i in range(1,num_parts+1):
+        t_start, t_end = part_duration * (i-1), part_duration* i
+        #audio = None
+        #need to create the object again because subclip updates
+        audio_i = audio.coreader().subclip(t_start, t_end) #the coreader() creates a new copy, each one for each piece
+        print(f"Trying to write part #{i}\n")
+        print(f"audio goes from {t_start}s to {t_end}s\n")
+        audio_i.write_audiofile(get_subpart_path(i))
+        #audio_i.close()
+        print(f"Finished writing part #{i}")
+    audio.close()
+    print(f"Finish writing all parts in {parts_folder}")
 '''
 Returns the complete path given a folder, prefix, name and type
 Folder must end in "/"
@@ -56,4 +81,5 @@ def get_path(folder, prefix, name, file_type):
 
 if __name__ == "__main__":
     video_name = "p01_s1_vid_parent_annotation_2019-03-06-11-36-09"
-    write_audio_of_all_videos(video_name)
+    num_parts = 4
+    write_audio_of_videos_in_parts(video_name, num_parts)
