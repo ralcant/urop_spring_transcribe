@@ -32,14 +32,14 @@ class Transcribe_project:
     """
     def start_transcribe_job(self, filename, num_parts, lazy_update_audio = True, lazy_update_processed_transcript = True):
         ## STEP 1: Processing the videos (combining them and extracting the audio)
-        self.write_audio(filename, num_parts, lazy_update_audio)
+        real_part_length = self.write_audio(filename, num_parts, lazy_update_audio)
         ## STEP 2: Process the transcript (originally a .csv file) --> write a .text file with all the words
         all_info = self.process_transcript(filename, num_parts, lazy_update_processed_transcript)
         ## STEP 3: Use the audio and text file to force allign it and then write a json file with the results
         os.makedirs(f"{self.output_folder}{filename}/", exist_ok=True) #create directory necessary
         self.transcribe_all(filename, num_parts)
         ## STEP 4: Use the speaker order from above to insert it in the json file
-        self.add_speaker_labels_in_parts(filename, num_parts, all_info)
+        self.add_speaker_labels_in_parts(filename, num_parts, all_info, real_part_length)
         return f"\nSuccesfully processed the filename: {filename}\n"
     """
     Combines the videos found in self.video_folder/filename/
@@ -47,7 +47,7 @@ class Transcribe_project:
     For more details in the implementation, see audio_handler.py
     """
     def write_audio(self, filename, num_parts, lazy_update):
-        write_audio_of_videos_in_parts(filename, num_parts, self.video_folder, self.audio_folder, self.audio_prefix, lazy_update)
+        return write_audio_of_videos_in_parts(filename, num_parts, self.video_folder, self.audio_folder, self.audio_prefix, lazy_update)
     """
     Process the .csv file found in self.transcripts_inputs_folder/filename.csv by extracting the words 
     in all the sentences. It returns a list of the speaker_labels for every word said. 
@@ -106,7 +106,7 @@ class Transcribe_project:
                 fragment["speaker_label"] = speaker_labels[i]
         with open(output_path, 'w+') as json_to_write:
             json.dump(out, json_to_write, indent=4)
-    def add_speaker_labels_in_parts(self, filename, num_parts, all_info):
+    def add_speaker_labels_in_parts(self, filename, num_parts, all_info, real_part_length):
         output_subpart_path = lambda part: get_path(f"{self.output_folder}{filename}/", f"{self.output_prefix}{num_parts}_part_", part, "json")
         output_path = get_path(f"{self.output_folder}{filename}/", f"{self.output_prefix}_final_{num_parts}_", filename, "json")
         with open(output_path, 'w+') as json_to_write:
@@ -117,10 +117,9 @@ class Transcribe_project:
                 with open(output_subpart_path(part)) as f:
                     all_fragments_subpart = json.load(f)["fragments"]
                     for i, fragment in enumerate(all_fragments_subpart):
-                        try:
-                            fragment["speaker_label"] = all_info[part]["speaker_labels"][i] #i-th word of the respective part
-                        except:
-                            print(part in all_info.keys())#), "speaker_labels" in all_info[part].keys(), i in all_info[part]["speaker_labels"].keys(), i)
+                        fragment["begin"]= float(fragment["begin"]) + real_part_length* (part-1)
+                        fragment["end"]= float(fragment["end"]) + real_part_length * (part-1)
+                        fragment["speaker_label"] = all_info[part]["speaker_labels"][i] #i-th word of the respective part
                     all_values["fragments"].extend(all_fragments_subpart)
                     print(f"Added speaker labels for part #{part}")
             json.dump(all_values, json_to_write, indent=4)
@@ -140,9 +139,9 @@ if __name__ == "__main__":
     #project.make_folders()   ### HELLO, UNCOMMENT ME :)
 
     ###### SECOND: comment line above^ and uncomment this below (and run) #################
-    filename = "p01_s2_vid_parent_annotation_2019-03-13-11-16-16"
-    num_parts = 1
-    response = project.start_transcribe_job(filename, num_parts)
+    filename_1, num_parts_1 = "p01_s1_vid_parent_annotation_2019-03-06-11-36-09", 1
+    filename_2, num_parts_2 = "p01_s2_vid_parent_annotation_2019-03-13-11-16-16", 2
+    response = project.start_transcribe_job(filename_2, num_parts_2)
     print(response)
 
     ###### THIRD: Try to change the filename to other (valid) names and see if it works! ####

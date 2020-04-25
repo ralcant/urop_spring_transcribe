@@ -32,9 +32,6 @@ def write_audio_of_videos_in_parts(name, num_parts, video_folder="./videos/",
     total_audio_path = get_path(all_parts_folder, audio_prefix, name, "mp3")
     if os.path.exists(total_audio_path) and lazy_update:
         print(f"The audio: {total_audio_path} already exists and lazy_update is set to {lazy_update}, so we are skipping this.")
-    if all(os.path.exists(get_subpart_path(i)) for i in range(1, num_parts+1)) and lazy_update:
-        print(f"The processed inputs already exist at {all_parts_folder} and lazy_update is {lazy_update}, so we are skippping it")
-        return
     else:
         print(get_subpart_path(1))
         list_all_clips = []
@@ -53,7 +50,10 @@ def write_audio_of_videos_in_parts(name, num_parts, video_folder="./videos/",
         clips_combined.write_audiofile(total_audio_path)       
     print(f"\nNow trying to divide the audio in {num_parts} parts \n") #TODO: check if the parts already exist
     divide_audio(total_audio_path, num_parts, all_parts_folder, audio_prefix)
-
+    audio = AudioFileClip(total_audio_path)
+    every_part_duration = (audio.duration)/num_parts
+    audio.close()
+    return every_part_duration
 def divide_audio(audio_folder, num_parts, parts_folder, audio_part_prefix):
     audio = AudioFileClip(audio_folder)
     total_duration = audio.duration
@@ -81,5 +81,12 @@ def get_path(folder, prefix, name, file_type):
 
 if __name__ == "__main__":
     video_name = "p01_s1_vid_parent_annotation_2019-03-06-11-36-09"
+    video_name =  "p01_s2_vid_parent_annotation_2019-03-13-11-16-16"
     num_parts = 4
-    write_audio_of_videos_in_parts(video_name, num_parts)
+    #write_audio_of_videos_in_parts(video_name, num_parts)
+    audio = AudioFileClip(f"./audios/{video_name}/audio_{video_name}.mp3")
+    audio_part_1 = AudioFileClip(f"./audios/{video_name}/audio_2_part_1.mp3")
+    audio_part_2 = AudioFileClip(f"./audios/{video_name}/audio_2_part_2.mp3")
+    print(audio.duration)
+    print(audio_part_1.duration)
+    print(audio_part_2.duration)

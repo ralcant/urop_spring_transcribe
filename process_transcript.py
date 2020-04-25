@@ -37,7 +37,8 @@ def process_csv(filename, num_parts,
         duration = last_timestamp - first_timestamp + 1 #increase the size of interval. Assuming that
         part_duration = duration/num_parts
         print(f"part_duration = {part_duration} for {num_parts} parts")
-        all_info = {i: {
+        all_info = {
+            i: {
             "words": [],
             "speaker_labels":[]
         } for i in range(1, num_parts+1)} #for every part, it keeps all words and their speaker_labels
@@ -97,10 +98,11 @@ def get_word_times(text, start_time, end_time):
     return get_word_times_equally_divided(text, start_time, end_time) # if want to use 
 if __name__ == "__main__":
     video_name = "p01_s1_vid_parent_annotation_2019-03-06-11-36-09"
+    
     #all_speakers = process_csv(video_name)
     #print(all_speakers)
     num_parts = 4
-    process_csv(video_name, num_parts, lazy_update=False)
+    #process_csv(video_name, num_parts, lazy_update=False)
     # print(cmudict.words())
     # print("True" in cmudict.words())
     # print(get_syllables("Lets"))
