@@ -139,9 +139,73 @@ if __name__ == "__main__":
     #project.make_folders()   ### HELLO, UNCOMMENT ME :)
 
     ###### SECOND: comment line above^ and uncomment this below (and run) #################
-    filename_1, num_parts_1 = "p01_s1_vid_parent_annotation_2019-03-06-11-36-09", 1
-    filename_2, num_parts_2 = "p01_s2_vid_parent_annotation_2019-03-13-11-16-16", 2
-    response = project.start_transcribe_job(filename_2, num_parts_2)
+    all_possibilities = {
+        "1_1":{
+            "filename": "p01_s1_vid_parent_annotation_2019-03-06-11-36-09",
+            "num_parts": 1
+        },
+        "1_2":{
+            "filename": "p01_s2_vid_parent_annotation_2019-03-13-11-16-16",
+            "num_parts": 1
+        },
+        "2_1":{
+            "filename": "p02_s1_vid_parent_annotation_2019-03-08-11-56-48",
+            "num_parts": 1
+        },
+        "2_2":{
+            "filename":"p02_s2_vid_parent_annotation_2019-03-15-11-17-34",
+            "num_parts": 1
+        },
+        "3_1":{
+            "filename": "p03_s1_vid_parent_annotation_2019-03-08-15-40-50" ,
+            "num_parts": 1
+        },
+        "4_1":{
+            "filename": "p04_s1_vid_parent_annotation_2019-03-08-18-41-38",
+            "num_parts": 1
+        },
+        "4_2":{
+            "filename": "p04_s2_vid_parent_annotation_2019-03-15-17-14-27",
+            "num_parts": 1
+        },
+        "5_1":{
+            "filename": "p05_s1_vid_parent_annotation_2019-03-09-12-51-07",
+            "num_parts": 1
+        },
+        "5_2":{
+            "filename": "p05_s2_vid_parent_annotation_2019-03-17-10-00-28",
+            "num_parts": 1
+        },
+        "6_1":{
+            "filename": "p06_s1_vid_parent_annotation_2019-03-09-14-18-01",
+            "num_parts": 1,
+        },
+        "6_2":{
+            "filename": "p06_s2_vid_parent_annotation_2019-03-17-13-41-16",
+            "num_parts": 1,
+        },
+        "7_1":{
+            "filename": "p07_s1_vid_parent_annotation_2019-03-09-15-46-50",
+            "num_parts": 1
+        },
+        "7_2":{
+            "filename": "p07_s2_vid_parent_annotation_2019-03-17-15-47-00",
+            "num_parts": 1
+        },
+        "8_1":{
+            "filename": "p08_s1_vid_parent_annotation_2019-03-15-18-51-44",
+            "num_parts": 1,
+        },
+        "8_2":{
+            "filename": "p08_s2_vid_parent_annotation_2019-03-21-18-39-44",
+            "num_parts": 1
+        }
+    }
+    ## error on 2_2, 6_2, 7_1
+    to_try = "2_1"
+    filename = all_possibilities[to_try]["filename"]
+    num_parts = all_possibilities[to_try]["num_parts"]
+    response = project.start_transcribe_job(filename, num_parts)
     print(response)
 
     ###### THIRD: Try to change the filename to other (valid) names and see if it works! ####

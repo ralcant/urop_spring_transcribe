@@ -39,7 +39,7 @@ def write_audio_of_videos_in_parts(name, num_parts, video_folder="./videos/",
         only_mp4 = list(filter(lambda name: name.endswith(".mp4"), all_elements)) #only keeping the videos
         sorted_videos = sorted(only_mp4, key = extract_number_from_video) # ordering with the number, not with the str rep
                                                                         # 'video_2' goes before 'video_10'        
-        print("Trying to combine all audios!")
+        print(f"Found {len(sorted_videos)} videos, now trying to combine all audios!\n")
         for sub_video in sorted_videos:
             print(".", end="") #just to keep track of where we are 
             subclip = AudioFileClip(f"{video_folder}{name}/{sub_video}")
@@ -49,16 +49,19 @@ def write_audio_of_videos_in_parts(name, num_parts, video_folder="./videos/",
         print("Clips combined, now writing to {}".format(total_audio_path))
         clips_combined.write_audiofile(total_audio_path)       
     print(f"\nNow trying to divide the audio in {num_parts} parts \n") #TODO: check if the parts already exist
-    divide_audio(total_audio_path, num_parts, all_parts_folder, audio_prefix)
+    divide_audio(total_audio_path, num_parts, all_parts_folder, audio_prefix, lazy_update)
     audio = AudioFileClip(total_audio_path)
     every_part_duration = (audio.duration)/num_parts
     audio.close()
     return every_part_duration
-def divide_audio(audio_folder, num_parts, parts_folder, audio_part_prefix):
+def divide_audio(audio_folder, num_parts, parts_folder, audio_part_prefix, lazy_update):
+    get_subpart_path = lambda num_part: get_path(parts_folder, f"{audio_part_prefix}{num_parts}_part_", num_part, "mp3")
+    if all(os.path.exists(get_subpart_path(i)) for i in range(1, num_parts+1)) and lazy_update:
+        print(f"All the divisions for {num_parts} num_parts already exist and lazy_update is set to True, so we are skipping this.")
+        return
     audio = AudioFileClip(audio_folder)
     total_duration = audio.duration
     part_duration = total_duration/num_parts
-    get_subpart_path = lambda num_part: get_path(parts_folder, f"{audio_part_prefix}{num_parts}_part_", num_part, "mp3")
     for i in range(1,num_parts+1):
         t_start, t_end = part_duration * (i-1), part_duration* i
         #audio = None
