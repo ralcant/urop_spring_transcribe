@@ -156,22 +156,11 @@ if __name__ == "__main__":
     #project.make_folders()   ### HELLO, UNCOMMENT ME :)
 
     ###### SECOND: comment line above^ and uncomment this below (and run) #################
-    # for a in range(1, 18):
-    #     for b in range(1, 3):
-    #         try:
-    #             
-    #         except:
-    #             print(f"Didn't found any videos for family {a} - session #{b}")
-    #print(filename)
-    a, b = 16, 2  
+    family_number, session_number = 16, 2  
     num_parts = 1
-    filename = update_mapping(a, b, num_parts)
-    # all_possibilities = 
-    # to_try = "16_1"
-    # filename = all_possibilities[to_try]["filename"]
-    # num_parts = all_possibilities[to_try]["num_parts"]
+    filename = update_mapping(family_number, session_number, num_parts)
     response = project.start_transcribe_job(filename, num_parts)
-    # print(response)
+    print(response)
 
     ###### THIRD: Try to change the filename to other (valid) names and see if it works! ####
     ########### Your output JSON files will be located in /transcripts/outputs/##############
