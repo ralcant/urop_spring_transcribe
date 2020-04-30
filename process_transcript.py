@@ -27,7 +27,7 @@ def process_csv(filename, num_parts,
     # if all(os.path.exists(get_subpart_path(i)) for i in range(1, num_parts+1)) and lazy_update:
     #     print(f"The processed inputs already exist at {file_path} and lazy_update is {lazy_update}, so we are skippping it")
     #     return
-    with open(file_path) as csv_file:
+    with open(file_path, encoding="utf-8") as csv_file:
         all_speakers = [] #keeps track of the speaker labels in the order they appear
         csv_reader = csv.reader(csv_file, delimiter=',')
         next(csv_reader, None)  #to skip the header
@@ -56,10 +56,13 @@ def process_csv(filename, num_parts,
 
     ### writing to the designed txt files ####
     for part in range(1, num_parts+1):
-        print(f"Trying to write part # {part}")
-        with open(get_subpart_path(part), 'w+') as out:
+        print(f"Trying to write part # {part} in {get_subpart_path(part)}")
+        with open(get_subpart_path(part), 'w+', encoding="utf-8") as out:
             for word in all_info[part]["words"]:
-                out.write(f'{word}\n')
+                try:
+                    out.write(f'{word}\n')
+                except:
+                    print(f"erroneous word: {word}")
     print(f'\nProcessed {len(all_rows)} lines for file {filename}')
 
     return all_info
@@ -106,3 +109,17 @@ if __name__ == "__main__":
     # print(cmudict.words())
     # print("True" in cmudict.words())
     # print(get_syllables("Lets"))
+    filename = "p09_s2_vid_parent_annotation_2019-03-24-14-21-35"
+    #filename = "p09_s1_vid_parent_annotation_2019-03-16-09-49-32"
+    file_path = get_path("./transcripts/inputs/", "", filename, "csv")
+    with open(file_path, encoding="utf-8") as csv_file:
+        all_speakers = [] #keeps track of the speaker labels in the order they appear
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        next(csv_reader, None)  #to skip the header
+        all_rows = [ROW._make(row) for row in csv_reader]
+        first_timestamp = float(all_rows[0].timestamp_elapsed_time)
+        last_timestamp = float(all_rows[-1].timestamp_elapsed_time)
+        duration = last_timestamp - first_timestamp + 1 #increase the size of interval. Assuming that
+        part_duration = duration/num_parts
+        print(f"part_duration = {part_duration} for {num_parts} parts")
+

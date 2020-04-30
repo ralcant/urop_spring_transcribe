@@ -1,0 +1,262 @@
+{
+    "1_1": {
+        "filename": "p01_s1_vid_parent_annotation_2019-03-06-11-36-09",
+        "num_parts": 1
+    },
+    "1_2": {
+        "filename": "p01_s2_vid_parent_annotation_2019-03-13-11-16-16",
+        "num_parts": 1
+    },
+    "2_1": {
+        "filename": "p02_s1_vid_parent_annotation_2019-03-08-11-56-48",
+        "num_parts": 1
+    },
+    "2_2": {
+        "filename": "p02_s2_vid_parent_annotation_2019-03-15-11-17-34",
+        "num_parts": 1
+    },
+    "3_1": {
+        "filename": "p03_s1_vid_parent_annotation_2019-03-08-15-40-50",
+        "num_parts": 1
+    },
+    "4_1": {
+        "filename": "p04_s1_vid_parent_annotation_2019-03-08-18-41-38",
+        "num_parts": 1
+    },
+    "4_2": {
+        "filename": "p04_s2_vid_parent_annotation_2019-03-15-17-14-27",
+        "num_parts": 1
+    },
+    "5_1": {
+        "filename": "p05_s1_vid_parent_annotation_2019-03-09-12-51-07",
+        "num_parts": 1
+    },
+    "5_2": {
+        "filename": "p05_s2_vid_parent_annotation_2019-03-17-10-00-28",
+        "num_parts": 1
+    },
+    "6_1": {
+        "filename": "p06_s1_vid_parent_annotation_2019-03-09-14-18-01",
+        "num_parts": 1
+    },
+    "6_2": {
+        "filename": "p06_s2_vid_parent_annotation_2019-03-17-13-41-16",
+        "num_parts": 1
+    },
+    "7_1": {
+        "filename": "p07_s1_vid_parent_annotation_2019-03-09-15-46-50",
+        "num_parts": 1
+    },
+    "7_2": {
+        "filename": "p07_s2_vid_parent_annotation_2019-03-17-15-47-00",
+        "num_parts": 1
+    },
+    "8_1": {
+        "filename": "p08_s1_vid_parent_annotation_2019-03-15-18-51-44",
+        "num_parts": 1
+    },
+    "8_2": {
+        "filename": "p08_s2_vid_parent_annotation_2019-03-21-18-39-44",
+        "num_parts": 1
+    },
+    "9_1": {
+        "filename": "p09_s1_vid_parent_annotation_2019-03-16-09-49-32",
+        "num_parts": 1
+    },
+    "9_2": {
+        "filename": "p09_s2_vid_parent_annotation_2019-03-24-14-21-35",
+        "num_parts": 1
+    },
+    "10_1": {
+        "filename": "p10_s1_vid_parent_annotation_2019-03-16-11-34-15",
+        "num_parts": 1
+    },
+    "10_2": {
+        "filename": "p10_s2_vid_parent_annotation_2019-03-24-13-10-25",
+        "num_parts": 1
+    },
+    "11_1": {
+        "filename": "p11_s1_vid_parent_annotation_2019-03-18-14-23-55",
+        "num_parts": 1
+    },
+    "11_2": {
+        "filename": "p11_s2_vid_parent_annotation_2019-04-11-15-11-26",
+        "num_parts": 1
+    },
+    "12_1": {
+        "filename": "p12_s1_vid_parent_annotation_2019-03-22-17-10-28",
+        "num_parts": 1
+    },
+    "12_2": {
+        "filename": "p12_s2_vid_parent_annotation_2019-03-29-18-06-13",
+        "num_parts": 1
+    },
+    "13_1": {
+        "filename": "p13_s1_vid_parent_annotation_2019-03-23-09-51-08",
+        "num_parts": 1
+    },
+    "13_2": {
+        "filename": "p13_s2_vid_parent_annotation_2019-03-31-09-48-53",
+        "num_parts": 1
+    },
+    "14_1": {
+        "filename": "p14_s1_vid_parent_annotation_2019-03-23-15-38-30",
+        "num_parts": 1
+    },
+    "14_2": {
+        "filename": "p14_s2_vid_parent_annotation_2019-03-31-16-34-03",
+        "num_parts": 1
+    },
+    "15_1": {
+        "filename": "p15_s1_vid_parent_annotation_2019-03-24-11-21-48",
+        "num_parts": 1
+    },
+    "15_2": {
+        "filename": "p15_s2_vid_parent_annotation_2019-03-31-13-04-39",
+        "num_parts": 1
+    },
+    "16_1": {
+        "filename": "p16_s1_vid_parent_annotation_2019-03-30-09-59-12",
+        "num_parts": 1
+    },
+    "16_2": {
+        "filename": "p16_s2_vid_parent_annotation_2019-04-08-15-51-56",
+        "num_parts": 1
+    },
+    "17_1": {
+        "filename": "p17_s1_vid_parent_annotation_2019-03-31-11-22-58",
+        "num_parts": 1
+    },
+    "17_2": {
+        "filename": "p17_s2_vid_parent_annotation_2019-04-07-11-25-21",
+        "num_parts": 1
+    },
+    "18_1": {
+        "filename": "p18_s1_vid_parent_annotation_2019-04-06-09-31-59",
+        "num_parts": 1
+    },
+    "18_2": {
+        "filename": "p18_s2_vid_parent_annotation_2019-04-08-19-11-29",
+        "num_parts": 1
+    },
+    "19_1": {
+        "filename": "p19_s1_vid_parent_annotation_2019-04-06-15-57-56",
+        "num_parts": 1
+    },
+    "19_2": {
+        "filename": "p19_s2_vid_parent_annotation_2019-04-14-14-51-21",
+        "num_parts": 1
+    },
+    "20_1": {
+        "filename": "p20_s1_vid_parent_annotation_2019-04-18-14-30-24",
+        "num_parts": 1
+    },
+    "20_2": {
+        "filename": "p20_s2_vid_parent_annotation_2019-04-28-11-55-07",
+        "num_parts": 1
+    },
+    "21_1": {
+        "filename": "p21_s1_vid_parent_annotation_2019-04-13-09-52-16",
+        "num_parts": 1
+    },
+    "21_2": {
+        "filename": "p21_s2_vid_parent_annotation_2019-04-23-16-22-17",
+        "num_parts": 1
+    },
+    "22_1": {
+        "filename": "p22_s1_vid_parent_annotation_2019-04-18-19-11-20",
+        "num_parts": 1
+    },
+    "22_2": {
+        "filename": "p22_s2_vid_parent_annotation_2019-04-27-16-52-05",
+        "num_parts": 1
+    },
+    "23_1": {
+        "filename": "p23_s1_vid_parent_annotation_2019-04-14-17-49-32",
+        "num_parts": 1
+    },
+    "23_2": {
+        "filename": "p23_s2_vid_parent_annotation_2019-04-20-18-02-02",
+        "num_parts": 1
+    },
+    "24_1": {
+        "filename": "p24_s1_vid_parent_annotation_2019-04-18-09-52-26",
+        "num_parts": 1
+    },
+    "24_2": {
+        "filename": "p24_s2_vid_parent_annotation_2019-04-21-09-52-40",
+        "num_parts": 1
+    },
+    "25_1": {
+        "filename": "p25_s1_vid_parent_annotation_2019-04-26-11-27-47",
+        "num_parts": 1
+    },
+    "25_2": {
+        "filename": "p25_s2_vid_parent_annotation_2019-04-30-12-40-13",
+        "num_parts": 1
+    },
+    "26_1": {
+        "filename": "p26_s1_vid_parent_annotation_2019-04-23-10-04-57",
+        "num_parts": 1
+    },
+    "26_2": {
+        "filename": "p26_s2_vid_parent_annotation_2019-05-07-09-50-23",
+        "num_parts": 1
+    },
+    "27_1": {
+        "filename": "p27_s1_vid_parent_annotation_2019-04-28-10-38-25",
+        "num_parts": 1
+    },
+    "28_1": {
+        "filename": "p28_s1_vid_parent_annotation_2019-04-28-14-17-57",
+        "num_parts": 1
+    },
+    "28_2": {
+        "filename": "p28_s2_vid_parent_annotation_2019-05-11-14-10-21",
+        "num_parts": 1
+    },
+    "29_1": {
+        "filename": "p29_s1_vid_parent_annotation_2019-04-28-17-40-11",
+        "num_parts": 1
+    },
+    "29_2": {
+        "filename": "p29_s2_vid_parent_annotation_2019-05-12-16-17-37",
+        "num_parts": 1
+    },
+    "30_1": {
+        "filename": "p30_s1_vid_parent_annotation_2019-05-10-16-01-49",
+        "num_parts": 1
+    },
+    "30_2": {
+        "filename": "p30_s2_vid_parent_annotation_2019-05-13-11-30-48",
+        "num_parts": 1
+    },
+    "31_1": {
+        "filename": "p31_s1_vid_parent_annotation_2019-05-10-20-30-06",
+        "num_parts": 1
+    },
+    "31_2": {
+        "filename": "p31_s2_vid_parent_annotation_2019-05-17-20-12-56",
+        "num_parts": 1
+    },
+    "32_1": {
+        "filename": "p32_s1_vid_parent_annotation_2019-05-18-11-06-50",
+        "num_parts": 1
+    },
+    "32_2": {
+        "filename": "p32_s2_vid_parent_annotation_2019-06-02-11-12-59",
+        "num_parts": 1
+    },
+    "33_1": {
+        "filename": "p33_s1_vid_parent_annotation_2019-05-19-10-14-19",
+        "num_parts": 1
+    },
+    "34_1": {
+        "filename": "p34_s1_vid_parent_annotation_2019-05-25-09-54-53",
+        "num_parts": 1
+    },
+    "34_2": {
+        "filename": "p34_s2_vid_parent_annotation_2019-06-01-13-37-58",
+        "num_parts": 1
+    }
+}

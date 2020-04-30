@@ -132,6 +132,23 @@ For example, create_path("./audios/", "audio_", "file1", "mp3") returns "./audio
 def get_path(folder, prefix, name, file_type):
     return "{}{}{}.{}".format(folder, prefix, name, file_type)
 
+def update_mapping(a, b, num_parts= 1, video_folder="./videos"):
+    resized_a = str(a) if a >= 10 else f"0{a}"   
+    start = f"p{resized_a}_s{b}"
+    for video_dir in os.listdir(video_folder):
+        if video_dir.startswith(start):
+            print(f"Adding {video_dir} to mappings.json")
+            with open("./mappings.json") as f:
+                mappings = json.load(f)
+                mappings[f"{a}_{b}"] = {
+                    "filename": video_dir,
+                    "num_parts": num_parts
+                }
+            with open("./mappings.json", "w+") as json_to_write:
+                json.dump(mappings, json_to_write, indent=4)
+            return video_dir
+    raise Exception(f"Didn't found any videos for family {a} - session #{b}")
+
 
 if __name__ == "__main__":
     project = Transcribe_project()
@@ -139,74 +156,22 @@ if __name__ == "__main__":
     #project.make_folders()   ### HELLO, UNCOMMENT ME :)
 
     ###### SECOND: comment line above^ and uncomment this below (and run) #################
-    all_possibilities = {
-        "1_1":{
-            "filename": "p01_s1_vid_parent_annotation_2019-03-06-11-36-09",
-            "num_parts": 1
-        },
-        "1_2":{
-            "filename": "p01_s2_vid_parent_annotation_2019-03-13-11-16-16",
-            "num_parts": 1
-        },
-        "2_1":{
-            "filename": "p02_s1_vid_parent_annotation_2019-03-08-11-56-48",
-            "num_parts": 1
-        },
-        "2_2":{
-            "filename":"p02_s2_vid_parent_annotation_2019-03-15-11-17-34",
-            "num_parts": 1
-        },
-        "3_1":{
-            "filename": "p03_s1_vid_parent_annotation_2019-03-08-15-40-50" ,
-            "num_parts": 1
-        },
-        "4_1":{
-            "filename": "p04_s1_vid_parent_annotation_2019-03-08-18-41-38",
-            "num_parts": 1
-        },
-        "4_2":{
-            "filename": "p04_s2_vid_parent_annotation_2019-03-15-17-14-27",
-            "num_parts": 1
-        },
-        "5_1":{
-            "filename": "p05_s1_vid_parent_annotation_2019-03-09-12-51-07",
-            "num_parts": 1
-        },
-        "5_2":{
-            "filename": "p05_s2_vid_parent_annotation_2019-03-17-10-00-28",
-            "num_parts": 1
-        },
-        "6_1":{
-            "filename": "p06_s1_vid_parent_annotation_2019-03-09-14-18-01",
-            "num_parts": 1,
-        },
-        "6_2":{
-            "filename": "p06_s2_vid_parent_annotation_2019-03-17-13-41-16",
-            "num_parts": 1,
-        },
-        "7_1":{
-            "filename": "p07_s1_vid_parent_annotation_2019-03-09-15-46-50",
-            "num_parts": 1
-        },
-        "7_2":{
-            "filename": "p07_s2_vid_parent_annotation_2019-03-17-15-47-00",
-            "num_parts": 1
-        },
-        "8_1":{
-            "filename": "p08_s1_vid_parent_annotation_2019-03-15-18-51-44",
-            "num_parts": 1,
-        },
-        "8_2":{
-            "filename": "p08_s2_vid_parent_annotation_2019-03-21-18-39-44",
-            "num_parts": 1
-        }
-    }
-    ## error on 2_2, 6_2, 7_1
-    to_try = "2_1"
-    filename = all_possibilities[to_try]["filename"]
-    num_parts = all_possibilities[to_try]["num_parts"]
+    # for a in range(1, 18):
+    #     for b in range(1, 3):
+    #         try:
+    #             
+    #         except:
+    #             print(f"Didn't found any videos for family {a} - session #{b}")
+    #print(filename)
+    a, b = 16, 2  
+    num_parts = 1
+    filename = update_mapping(a, b, num_parts)
+    # all_possibilities = 
+    # to_try = "16_1"
+    # filename = all_possibilities[to_try]["filename"]
+    # num_parts = all_possibilities[to_try]["num_parts"]
     response = project.start_transcribe_job(filename, num_parts)
-    print(response)
+    # print(response)
 
     ###### THIRD: Try to change the filename to other (valid) names and see if it works! ####
     ########### Your output JSON files will be located in /transcripts/outputs/##############
