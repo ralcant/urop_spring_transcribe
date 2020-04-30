@@ -30,8 +30,10 @@ after that I get the error
 
 aaaaand I personally don't know how to fix it, and trust me I've been trying. (insert sad face)
 
-This is why I am coming to you.
-<strong>Update:</strong> The bug is fixed! 
+This is why I am coming to you. 
+
+## Update
+(April 30) The bug is fixed! 
 1. I realized that the memory error I was getting days ago was because I was trying to work with the 5s video and process them to audio (all preprocessing stuff) AND do the forced alignment task at the same time. I guess this used too much memory and that's why my computer was constantly crying about it.
 2. This is why I did the whole process in two parts, first preprocessing and then do the forced alignment ... and now it worked! 
 3. Yes, this means that the transcript division is not necessary anymore. However, you can technically divide it however you want if necessary (even tho I dont see why) just by setting a variable num_parts = 2,3, or 89 instead of 1.
